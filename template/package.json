@@ -2,18 +2,27 @@
   "name": "{{ name }}",
   "version": "1.0.0",
   "description": "{{ description }}",
-  "author": "{{ author }}",
+  "author": "LIANGXY\\Admin <758915145@qq.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "build": "node build/build.js"{{#unit}},
+    "build": "node build/build.js",
+    "et-init": "./node_modules/.bin/et -i",
+    "et": "./node_modules/.bin/et",{{#unit}},
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run"{{/unit}}{{#e2e}},
     "e2e": "node test/e2e/runner.js"{{/e2e}}{{#if_or unit e2e}},
     "test": "{{#unit}}npm run unit{{/unit}}{{#unit}}{{#e2e}} && {{/e2e}}{{/unit}}{{#e2e}}npm run e2e{{/e2e}}"{{/if_or}}{{#lint}},
     "lint": "eslint --ext .js,.vue src{{#unit}} test/unit/specs{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}"{{/lint}}
   },
   "dependencies": {
+    "axios": "^0.16.2",
+    "echarts": "^3.4.0",
+    "element-ui": "^1.2.3",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "vue-router": "^2.2.0",
+    "vuex": "^2.3.1",
     "vue": "^2.3.3"{{#router}},
     "vue-router": "^2.6.0"{{/router}}
   },
@@ -25,6 +34,7 @@
     {{/lint}}
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
@@ -33,6 +43,8 @@
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "cssnano": "^3.10.0",
+    "element-theme": "^0.7.1",
+    "element-theme-default": "^1.2.3",
     {{#lint}}
     "eslint": "^3.19.0",
     "eslint-friendly-formatter": "^3.0.0",
@@ -57,6 +69,9 @@
     "html-webpack-plugin": "^2.28.0",
     "http-proxy-middleware": "^0.17.3",
     "webpack-bundle-analyzer": "^2.2.1",
+    "mockjs": "^1.0.1-beta3",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.2",
     {{#unit}}
     "cross-env": "^5.0.1",
     "karma": "^1.4.1",

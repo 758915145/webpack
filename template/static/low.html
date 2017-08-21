@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+	<!--[if !IE]><!-->
+			<script>
+				location.href = "/"
+			</script>
+	<!--<![endif]-->
+<html>
+
+<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		body {
+				background-color: #F7F7F7;
+		}
+		
+		a {
+				text-decoration: none;
+				color: #3b8fd9;
+		}
+		
+		.clear {
+				clear: both;
+		}
+		
+		.oops {
+				display: block;
+				margin: 40px auto;
+				width: 104px;
+				height: 104px;
+		}
+		
+		.warning {
+				font-size: 18px;
+				font-weight: bolder;
+				text-align: center;
+				margin-top: 30px;
+				color: #232323;
+		}
+		
+		.good-choice {
+				width: 450px;
+				margin: 60px auto;
+				text-align: center;
+		}
+		
+		.browser {
+				float: left;
+				width: 224px;
+				cursor: pointer;
+		}
+		
+		.browser:hover span {
+				text-decoration: underline;
+		}
+		
+		.browser i {
+				display: block;
+				width: 121px;
+				height: 121px;
+				margin: 0 auto;
+		}
+		
+		.browser span {
+				display: inline-block;
+				margin-top: 20px;
+		}
+		
+		.firefox {
+				border-right: 1px solid #ccc;
+		}
+		
+		.firefox i {
+				background: url(/static/low/firefox.jpg) 0 0 no-repeat;
+		}
+		
+		.chrome i {
+				background: url(/static/low/chrome.jpg) 0 0 no-repeat;
+		}
+		
+		.low {
+				margin: 20px auto 0;
+				background: url(/static/low/low.png) 0 0 no-repeat;
+				width: 384px;
+				height: 265px;
+		}
+		</style>
+</head>
+
+<body>
+		<i class="oops"></i>
+		<p class="warning">您正在使用的浏览器版本过低，建议使用以下浏览器</p>
+		<div class="good-choice">
+				<a href="http://www.mozilla.com/firefox/" class="browser firefox"><i></i><span>使用火狐浏览器</span></a>
+				<a href="https://www.google.cn/intl/zh-CN/chrome/browser/desktop/" class="browser chrome"><i></i><span>使用谷歌浏览器</span></a>
+				<div class="clear"></div>
+		</div>
+		<p class="warning">如果使用的是360极速、搜狗、猎豹、QQ浏览器等，请将浏览模式切换为极速模式</p>
+		<div class="low"></div>
+</body>
+
+</html>

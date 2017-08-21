@@ -23,6 +23,7 @@ module.exports = {
       selenium_host: 'localhost',
       silent: true,
       globals: {
+        retryAssertionTimeout:2000,//设置Asser的超时时间
         devServerURL: 'http://localhost:' + (process.env.PORT || config.dev.port)
       }
     },

@@ -73,7 +73,16 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      }
+      },
+      //打包其他文件
+      {
+          test: /\.(wav|swf)(\?.*)?$/,
+          loader: 'file-loader',
+          query: {
+              limit: 2000,
+              name: utils.assetsPath('other/[name].[hash:7].[ext]')
+          }
+      },//打包其他文件
     ]
   }
 }

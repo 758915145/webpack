@@ -1,8 +1,10 @@
 // 1. start the dev server using production config
 process.env.NODE_ENV = 'testing'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-var server = require('../../build/dev-server.js'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
-server.ready.then(() => {
+// 注释掉以提高测试速度↓
+//var server = require('../../build/dev-server.js'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
+//server.ready.then(() => {
   // 2. run the nightwatch test suite against it
   // to run in additional browsers:
   //    1. add an entry in test/e2e/nightwatch.conf.json under "test_settings"
@@ -27,7 +29,11 @@ server.ready.then(() => {
   }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
   runner.on('error', function (err) {
-    server.close(){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
+    // 注释掉以提高测试速度↓
+    //server.close(){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
     throw err{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
   }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
+// 注释掉以提高测试速度↓
+//}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
