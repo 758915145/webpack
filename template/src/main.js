@@ -11,11 +11,11 @@ Vue.use(Vuex);
 
 Vue.config.productionTip = false;
 
-//common文件夹下的 js 文件
+//js件夹下的 js 文件
 window.mixin = {};
 (r => {
     r.keys().forEach(r);
-})(require.context('./common/', true, /\.js$/));
+})(require.context('./js/', true, /\.js$/));
 
 //自动注册组件
 (r => {
