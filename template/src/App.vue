@@ -18,9 +18,7 @@ export default {
 </script>
 
 <style lang="scss">
-    @import "./css/variables.scss";
-    @import "./css/public.scss";
-    @import './css/element-ui-extend.scss';
+    
     #app{
         height:100vh;
         -moz-user-select:none;
