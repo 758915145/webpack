@@ -1,13 +1,7 @@
 import axios from 'axios'
 
 //动态加载API文件
-let personal = [];
-(r => {
-    r.keys().forEach(key=>{
-        personal.push(r(key).default);
-    });
-})(require.context('./personal/', true, /\.js$/));
-var apiOption = Object.assign(...personal);
+let apiOption = Object.assign(...(r => r.keys().map(key=>r(key).default))(require.context('./personal/', true, /\.js$/)))
 let API = {};
 //全屏的等待,多个网络请求并发时,要等所有的请求都完成后,才隐藏全屏等待
 //所以全屏等待使用的是一个数字,当数字为0时,隐藏全屏等待
