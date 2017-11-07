@@ -45,7 +45,7 @@
     "css-loader": "^0.28.0",
     "cssnano": "^3.10.0",
     "element-theme": "^2.0.0",
-    "element-theme-default": "^2.0.3",
+    "element-theme-default": "^1.4.9",
     {{#lint}}
     "eslint": "^3.19.0",
     "eslint-friendly-formatter": "^3.0.0",
