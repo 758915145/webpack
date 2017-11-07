@@ -11,26 +11,26 @@ window.loadding_count = 0
 axios.interceptors.request.use(config => {
     // 等待提示
     if (config.loadding) {
-    // 等待数量+1
-    config.loadding.loadding_count = config.loadding.loadding_count ? config.loadding.loadding_count + 1 : 1
+        // 等待数量+1
+        config.loadding.loadding_count = config.loadding.loadding_count ? config.loadding.loadding_count + 1 : 1
 
-    // elementUi等待提示
-    config.loadding.loadding = config.loadding.loadding || $vue.$loading(config.loadding)
-}
-
-// 全屏等待提示
-if (config.apiOption.loadding) {
-    if (++window.loadding_count > 0) {
-        window.loadding = $vue.$loading({fullscreen: true})
+        // elementUi等待提示
+        config.loadding.loadding = config.loadding.loadding || $vue.$loading(config.loadding)
     }
-}
 
-// sessionid
-if (localStorage.sessionid) {
-    config.headers = {'sessionid': localStorage.sessionid}
-}
+    // 全屏等待提示
+    if (config.apiOption.loadding) {
+        if (++window.loadding_count > 0) {
+            window.loadding = $vue.$loading({fullscreen: true})
+        }
+    }
 
-return config
+    // sessionid
+    if (localStorage.sessionid) {
+        config.headers = {'sessionid': localStorage.sessionid}
+    }
+
+    return config
 }, error => {
     return Promise.reject(error)
 })
@@ -63,24 +63,24 @@ axios.interceptors.response.use(response => {
     // 等待提示
     hideLodding(response.config.loadding)
 
-// 全屏等待提示
-if (response.config.apiOption.loadding) {
-    if (--window.loadding_count > 0) {
-        window.loadding.close()
+    // 全屏等待提示
+    if (response.config.apiOption.loadding) {
+        if (--window.loadding_count > 0) {
+            window.loadding.close()
+        }
     }
-}
 
-// 数据校验
-if (errorCode[response.data.code]) { // 错误代码校验
-    errorCode[response.data.code](response)
-    return Promise.reject(response)
-} else if (!response.data.data || _.isEmpty(response.data.data)) { // 空数据校验
-    return Promise.reject({type: 'empty', response: response})
-} else if (response.data.data.rowsSize && _.isEmpty(response.data.data.rows)) { // 空的分页数据校验
-    return Promise.reject({type: 'empty', response: response})
-} else {
-    return response
-}
+    // 数据校验
+    if (errorCode[response.data.code]) { // 错误代码校验
+        errorCode[response.data.code](response)
+        return Promise.reject(response)
+    } else if (!response.data.data || _.isEmpty(response.data.data)) { // 空数据校验
+        return Promise.reject({type: 'empty', response: response})
+    } else if (response.data.data.rowsSize && _.isEmpty(response.data.data.rows)) { // 空的分页数据校验
+        return Promise.reject({type: 'empty', response: response})
+    } else {
+        return response
+    }
 }, error => {
     // console.log(...arguments)
     // 等待提示
@@ -101,78 +101,78 @@ for (let key in apiOption) {
             dosome.apiOption = apiOption[key]
             let result
             let promise = new Promise((resolve, reject) => {
-                    if (apiOption[key].cache && apiOption[apiOption[key].url] && apiOption[apiOption[key].url][JSON.stringify(params)]) {
-                let res = apiOption[apiOption[key].url][JSON.stringify(params)]
-                setTimeout(() => {
-                    try {
-                        promise.successCallback && promise.successCallback(res)
-                    promise.finallyCallback && promise.finallyCallback(res)
-
-                result = res.data.data
-                resolve(res)
-            } catch (e) { console.warn(key + '=>读取缓存时发生错误', e) }
-            }, 20)
-            } else {
-                axios.post(
-                    // url
-                    apiOption[key].host ? apiOption[key].host + apiOption[key].url : host + apiOption[key].url,
-
-                    // 数据
-                    params,
-
-                    // 其他行为
-                    dosome
-                ).then(res => {
-                    // 可以给一个接口设置缓存
-                    if (apiOption[key].cache) {
-                    apiOption[apiOption[key].url] = apiOption[apiOption[key].url] || {}
-                    apiOption[apiOption[key].url][JSON.stringify(params)] = res
-                }
-                if (promise.successCallback) {
-                    try {
-                        promise.successCallback(res)
-                    } catch (e) {
-                        console.warn(key + '=>success 回调函数中发生错误', e)
-                    }
-                }
-
-                if (promise.finallyCallback) {
-                    try {
-                        promise.finallyCallback(res)
-                    } catch (e) {
-                        console.warn(key + '=>finally 回调函数中发生错误', e)
-                    }
-                }
-                result = res.data.data
-                resolve(res)
-            }).catch(err => {
-                    if (err && err.type === 'empty') {
-                    if (promise.emptyCallback) {
+                if (apiOption[key].cache && apiOption[apiOption[key].url] && apiOption[apiOption[key].url][JSON.stringify(params)]) {
+                    let res = apiOption[apiOption[key].url][JSON.stringify(params)]
+                    setTimeout(() => {
                         try {
-                            promise.emptyCallback(err.response)
-                        } catch (e) {
-                            console.warn(key + '=>empty 回调函数中发生错误', e)
-                        }
-                    }
-                    resolve(err.response)
+                            promise.successCallback && promise.successCallback(res)
+                            promise.finallyCallback && promise.finallyCallback(res)
+
+                        result = res.data.data
+                        resolve(res)
+                        } catch (e) { console.warn(key + '=>读取缓存时发生错误', e) }
+                    }, 20)
                 } else {
-                    // 真的出错了，有 loadding 的不用再等了
-                    if (dosome.loadding) {
-                        hideLodding(dosome.loadding)
-                    }
-                    if (promise.errorCallback) {
-                        try {
-                            promise.errorCallback(err.response)
-                        } catch (e) {
-                            console.warn(key + '=>error 回调函数中发生错误', e)
+                    axios.post(
+                        // url
+                        apiOption[key].host ? apiOption[key].host + apiOption[key].url : host + apiOption[key].url,
+
+                        // 数据
+                        params,
+
+                        // 其他行为
+                        dosome
+                    ).then(res => {
+                        // 可以给一个接口设置缓存
+                        if (apiOption[key].cache) {
+                            apiOption[apiOption[key].url] = apiOption[apiOption[key].url] || {}
+                            apiOption[apiOption[key].url][JSON.stringify(params)] = res
                         }
-                    }
-                    reject(err.response || err)
+                        if (promise.successCallback) {
+                            try {
+                                promise.successCallback(res)
+                            } catch (e) {
+                                console.warn(key + '=>success 回调函数中发生错误', e)
+                            }
+                        }
+
+                        if (promise.finallyCallback) {
+                            try {
+                                promise.finallyCallback(res)
+                            } catch (e) {
+                                console.warn(key + '=>finally 回调函数中发生错误', e)
+                            }
+                        }
+                        result = res.data.data
+                        resolve(res)
+                    }).catch(err => {
+                        if (err && err.type === 'empty') {
+                            if (promise.emptyCallback) {
+                                try {
+                                    promise.emptyCallback(err.response)
+                                } catch (e) {
+                                    console.warn(key + '=>empty 回调函数中发生错误', e)
+                                }
+                            }
+                            resolve(err.response)
+                        } else {
+                            // 真的出错了，有 loadding 的不用再等了
+                            if (dosome.loadding) {
+                                hideLodding(dosome.loadding)
+                            }
+                            if (promise.errorCallback) {
+                                try {
+                                    promise.errorCallback(err.response)
+                                } catch (e) {
+                                    console.warn(key + '=>error 回调函数中发生错误', e)
+                                }
+                            }
+                            reject(err.response || err)
+                        }
+                        promise.finallyCallback && promise.finallyCallback(err.response)
+                    })
                 }
-                promise.finallyCallback && promise.finallyCallback(err.response)
             })
-            }
-        })
 
             // 成功的回调
             promise.success = fn => {
