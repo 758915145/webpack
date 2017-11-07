@@ -108,8 +108,8 @@ for (let key in apiOption) {
                             promise.successCallback && promise.successCallback(res)
                             promise.finallyCallback && promise.finallyCallback(res)
 
-                        result = res.data.data
-                        resolve(res)
+                            result = res.data.data
+                            resolve(res)
                         } catch (e) { console.warn(key + '=>读取缓存时发生错误', e) }
                     }, 20)
                 } else {
