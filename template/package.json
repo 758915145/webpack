@@ -18,12 +18,11 @@
   "dependencies": {
     "axios": "^0.16.2",
     "echarts": "^3.4.0",
-    "element-ui": "^1.2.3",
+    "element-ui": "^2.0.3",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
-    "vue-router": "^2.2.0",
     "vuex": "^2.3.1",
-    "vue": "^2.3.3"{{#router}},
+    "vue": "^2.5.2"{{#router}},
     "vue-router": "^2.6.0"{{/router}}
   },
   "devDependencies": {
@@ -45,8 +44,8 @@
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "cssnano": "^3.10.0",
-    "element-theme": "^0.7.1",
-    "element-theme-default": "^1.2.3",
+    "element-theme": "^2.0.0",
+    "element-theme-default": "^2.0.3",
     {{#lint}}
     "eslint": "^3.19.0",
     "eslint-friendly-formatter": "^3.0.0",
@@ -109,7 +108,7 @@
     "url-loader": "^0.5.8",
     "vue-loader": "^12.1.0",
     "vue-style-loader": "^3.0.1",
-    "vue-template-compiler": "^2.3.3",
+    "vue-template-compiler": "^2.5.2",
     "webpack": "^2.6.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",

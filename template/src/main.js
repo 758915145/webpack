@@ -18,7 +18,7 @@ Vue.config.productionTip = false;
 window.mixin = {};
 (r => {
     r.keys().forEach(r);
-})(require.context('./js/', true, /\.js$/));
+})(require.context('./common/', true, /\.js$/));
 
 //自动注册组件
 (r => {
