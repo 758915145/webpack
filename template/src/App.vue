@@ -12,12 +12,14 @@
 </template>
 
 <script>
-export default {
-  name: 'app',
-  beforeCreate(){
-    $('#wellcome').hide()//清除等待提示
-  }
-}
+    <script>
+    /* global $ */
+    export default {
+        name: 'app',
+        beforeCreate () {
+            $('#wellcome').hide()// 清除等待提示
+        }
+    }
 </script>
 
 <style lang="scss">

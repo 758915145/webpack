@@ -1,4 +1,4 @@
-//vuex requires a Promise polyfill in this browser报错
+// vuex requires a Promise polyfill in this browser报错
 import 'babel-polyfill'
 
 // The Vue build version to load with the `import` command
@@ -14,7 +14,7 @@ Vue.use(Vuex);
 
 Vue.config.productionTip = false;
 
-//js件夹下的 js 文件
+// js件夹下的 js 文件
 window.mixin = {};
 (r => {
     r.keys().forEach(r);
@@ -28,7 +28,7 @@ Vue.component(item.name, item);
 });
 })(require.context('./components/', true, /.+index\.vue$/));
 
-//共享目录中的组件、文件
+// 共享目录中的组件、文件
 (r => {
     r.keys().forEach(r);
 })(require.context('./Public/js/', true, /\.js$/));
@@ -38,21 +38,6 @@ Vue.component(item.name, item);
 Vue.component(item.name, item);
 });
 })(require.context('./Public/components/', true, /.+index\.vue$/));
-
-//用户模糊查询
-Vue.component('my-item-zh', {
-    functional: true,
-    render: function (h, ctx) {
-        var item = ctx.props.item;
-        return h('li', ctx.data, [
-            h('span', { attrs: { class: 'name'} }, [item.realname + '　']),
-            h('span', { attrs: { class: 'resource' } }, [item.resourceName])
-        ]);
-    },
-    props: {
-        item: { type: Object, required: true }
-    }
-});
 
 window.app = new Vue({
     el: '#app',
@@ -77,7 +62,7 @@ window.app = new Vue({
         modules: (r=>{
             let result = {};
             r.keys().forEach(key=>{
-                let item = r(key).default;//export defult
+                let item = r(key).default;// export defult
                 result[item.name] = item;
             });
             return result;

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-//element-ui
+// element-ui
 import {
     Pagination,
     Dialog,
@@ -64,6 +64,7 @@ import {
     MessageBox,
     Message
 } from 'element-ui'
+import '../../../theme/index.css'
 
 Vue.use(Pagination)
 Vue.use(Dialog)
@@ -133,4 +134,3 @@ Vue.prototype.$confirm = MessageBox.confirm
 Vue.prototype.$prompt = MessageBox.prompt
 Vue.prototype.$notify = Notification
 Vue.prototype.$message = Message
-import '../../../theme/index.css'
