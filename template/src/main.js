@@ -15,7 +15,7 @@ Vue.use(Vuex)
 Vue.config.productionTip = false
 
 // js件夹下的 js 文件
-window.mixin = {}
+window.mixin = {};
 (r => {
     r.keys().forEach(r)
 })(require.context('./common/', true, /\.js$/));
@@ -31,11 +31,11 @@ window.mixin = {}
 // 共享目录中的组件、文件
 (r => {
     r.keys().forEach(r)
-})(require.context('./Public/js/', true, /\.js$/))
+})(require.context('./Public/js/', true, /\.js$/));
 (r => {
     r.keys().forEach(key => {
         let item = r(key)
-        Vue.component(item.name, item);
+        Vue.component(item.name, item)
     })
 })(require.context('./Public/components/', true, /.+index\.vue$/))
 
@@ -52,21 +52,21 @@ window.app = new Vue({
                     name: item.name,
                     component: item
                 }
-            });
+            })
         })(require.context('./pages/', true, /index\.vue$/))
     }),
     {{/router}}
 
     template: '<App/>',
-    store:new Vuex.Store({
+    store: new Vuex.Store({
         modules: (r => {
             let result = {}
             r.keys().forEach(key => {
                 let item = r(key).default // export defult
                 result[item.name] = item
-            });
+            })
             return result
         })(require.context('./', true, /store\.js$/))
     }), // Vuex
     components: {App: require('./App.vue')}
-});
+})
